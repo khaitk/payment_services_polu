@@ -4,7 +4,7 @@ Stripe Sample.
 Python 3.13 or newer required.
 """
 import os
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, request
 
 import stripe
 
@@ -14,7 +14,7 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='public')
 
-YOUR_DOMAIN = 'http://localhost:4242'
+YOUR_DOMAIN = 'http://localhost:5000'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
@@ -48,4 +48,4 @@ def session_status():
     return jsonify(status=session.status, customer_email=session.customer_details.email)
 
 if __name__ == '__main__':
-    app.run(port=4242)
+    app.run(debug=True,host='0.0.0.0')
